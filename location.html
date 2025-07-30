@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Attendance Form</title>
+  <script>
+    function submitWithLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          // Fill hidden form fields
+          document.getElementById("lat").value = position.coords.latitude;
+          document.getElementById("long").value = position.coords.longitude;
+
+          // Submit the form
+          document.getElementById("attendanceForm").submit();
+        }, function(error) {
+          alert("Location permission denied or unavailable.");
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <form id="attendanceForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfokvbfB3fo1B_EuHpmavDHcHKcfrVtNFC9LkB3Cfnotn-f9w/formResponse
+" method="POST" target="_self" onsubmit="submitWithLocation(); return false;">
+    <label>Staff email:</label><br>
+    <input type="text" name="entry.2061588853" required><br><br> 
+
+    <!-- Hidden GPS fields -->
+    <input type="hidden" name="entry.921810056" id="lat"> <!-- Latitude -->
+    <input type="hidden" name="entry.634860786" id="long"> <!-- Longitude -->
+
+    <input type="submit" value="Submit Attendance">
+  </form>
+</body>
+</html>
